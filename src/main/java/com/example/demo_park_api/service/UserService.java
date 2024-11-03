@@ -22,4 +22,10 @@ public class UserService {
     public User buscarPorID(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
     }
+    @Transactional
+    public User editarSenha(Long id, String password) {
+        User usuario = buscarPorID(id);
+        usuario.setPassword(password);
+        return usuario;
+    }
 }
